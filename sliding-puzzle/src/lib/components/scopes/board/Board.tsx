@@ -3,7 +3,11 @@
 import { useBoard } from "@/lib/hooks/useBoard";
 
 export default function Board({ size }: { size?: number }) {
-  const { state } = useBoard(size);
+  const { state, dispatch } = useBoard(size);
+
+  const handleClick = (index: number) => {
+    dispatch({ type: "MOVE", index: index });
+  };
 
   return (
     <div
@@ -15,12 +19,13 @@ export default function Board({ size }: { size?: number }) {
       }}
     >
       {state.tiles.map((tile, index) => (
-        <div
+        <button
           key={index}
           className="bg-background20 aspect-square flex items-center justify-center border-t border-border text-2xl font-bold rounded-lg shadow-md p-2 md:p-4"
+          onClick={() => handleClick(index)}
         >
           {tile}
-        </div>
+        </button>
       ))}
     </div>
   );

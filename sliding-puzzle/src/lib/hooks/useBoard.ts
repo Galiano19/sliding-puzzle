@@ -1,5 +1,6 @@
 import { useReducer } from "react";
 import { Action, Board, Tile } from "../types/board";
+import { moveTile } from "../utils/game/move";
 
 function createInitialBoard(size: number): Tile[] {
   const tiles = Array.from({ length: size * size }, (_, i) =>
@@ -18,9 +19,7 @@ function reducer(state: Board, action: Action): Board {
     case "MOVE":
       return {
         ...state,
-        tiles: state.tiles.map((tile, index) =>
-          index === action.index ? null : tile,
-        ),
+        tiles: moveTile(state, action.index),
       };
 
     default:
