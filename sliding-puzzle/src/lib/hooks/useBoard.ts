@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { Action, Board, Tile } from "../types/board";
+import { Action, Board } from "../types/board";
 import { moveTile } from "../utils/game/move";
 import { initBoard } from "../utils/game/init";
 

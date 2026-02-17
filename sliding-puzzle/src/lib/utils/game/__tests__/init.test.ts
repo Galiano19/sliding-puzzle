@@ -1,38 +1,32 @@
-import { initBoard } from "../init";
+import { Board } from "@/lib/types/board";
+import { initBoard, shuffle } from "../init";
 
 describe("initBoard", () => {
-  it("initializes at least 2x2 size", () => {
-    const result = initBoard(0);
-    expect(result).toEqual([1, 2, 3, null]);
+  describe("base structure", () => {
+    it("initializes at least 2x2 size", () => {
+      const result = initBoard(0);
+      expect(result).toHaveLength(4);
+    });
+
+    it("initializes a board with enough tiles based on a provided number", () => {
+      const numberProvided = 5;
+
+      const result = initBoard(numberProvided);
+
+      expect(result).toHaveLength(numberProvided * numberProvided);
+    });
   });
 
-  it("initializes based on a provided number", () => {
-    const result = initBoard(4);
-    expect(result).toEqual([
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
-      9,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      null,
-    ]);
-  });
+  describe("shuffle", () => {
+    const board: Board = {
+      size: 3,
+      tiles: [1, 2, 3, 4, 5, 6, 7, 8, null],
+    };
 
-  it("initializes a board with enough tiles", () => {
-    const numberProvided = 5;
+    it("makes sures that after shuffling, there is only 1 empty tile", () => {
+      const result = shuffle(board.tiles, board.size);
 
-    const result = initBoard(numberProvided);
-
-    expect(result).toHaveLength(numberProvided * numberProvided);
+      expect(result.filter(tile => tile === null).length).toBe(1);
+    });
   });
 });
