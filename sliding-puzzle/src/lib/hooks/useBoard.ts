@@ -1,20 +1,14 @@
 import { useReducer } from "react";
 import { Action, Board, Tile } from "../types/board";
 import { moveTile } from "../utils/game/move";
-
-function createInitialBoard(size: number): Tile[] {
-  const tiles = Array.from({ length: size * size }, (_, i) =>
-    i === size * size - 1 ? null : i + 1,
-  );
-  return tiles;
-}
+import { initBoard } from "../utils/game/init";
 
 function reducer(state: Board, action: Action): Board {
   switch (action.type) {
     case "INIT":
       return {
         size: action.size,
-        tiles: createInitialBoard(action.size),
+        tiles: initBoard(action.size),
       };
     case "MOVE":
       return {
@@ -30,7 +24,7 @@ function reducer(state: Board, action: Action): Board {
 export function useBoard(size: number = 2) {
   const [state, dispatch] = useReducer(reducer, {
     size,
-    tiles: createInitialBoard(size),
+    tiles: initBoard(size),
   });
 
   return {
