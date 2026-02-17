@@ -2,5 +2,9 @@
 
 @theme {
   --color-background: #ffffff;
-  --color-foreground: #171717;
+  --color-background10: #1a2233;
+  --color-background20: #232f48;
+
+  --color-text: #171717;
+  --color-border: #404040;
 }
