@@ -13,7 +13,7 @@ import { getMovableIndexes } from "./move";
  * @returns Tiles
  */
 export function shuffle(tiles: Tile[], size: number) {
-  let shuffleTiles = [...tiles];
+  const shuffleTiles = [...tiles];
   for (let index = 0; index < 200; index++) {
     const emptyIndex = shuffleTiles.indexOf(null);
     const movableItems = getMovableIndexes(emptyIndex, size);
