@@ -32,6 +32,7 @@ describe("initBoard", () => {
       size: 3,
       tiles: [1, 2, 3, 4, 5, 6, 7, 8, null],
       status: "playing",
+      moves: 0,
     };
 
     it("makes sures that after shuffling, there is only 1 empty tile", () => {
