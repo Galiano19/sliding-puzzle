@@ -6,12 +6,19 @@ describe("moveTile", () => {
     size: 3,
     tiles: [1, 2, 3, 4, 5, 6, 7, 8, null],
     status: "playing",
+    moves: 0,
   };
 
   describe("move strategy", () => {
+    it("increases the move counter by one after moving", () => {
+      const result = moveTile(board, 5);
+      expect(result.moves).toEqual(board.moves + 1);
+    });
     it("returns the same state if tile to move is not adjecent to an empty space", () => {
       const result = moveTile(board, 0);
       expect(result.tiles).toEqual([1, 2, 3, 4, 5, 6, 7, 8, null]);
+      //also checking moves counter does not increase
+      expect(result.moves).toEqual(board.moves);
     });
 
     it("moves tile adjacent to empty space", () => {

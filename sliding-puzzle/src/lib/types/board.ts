@@ -4,6 +4,7 @@ export interface Board {
   size: number;
   tiles: Tile[];
   status: "playing" | "complete";
+  moves: number;
 }
 
 export type Action =

@@ -22,13 +22,17 @@ export function getMovableIndexes(emptyIndex: number, size: number) {
   return moves;
 }
 
-export function moveTile(data: Board, index: number): { tiles: Board['tiles']; status: Board['status'] } {
-  if (data.status === "complete") return { tiles: data.tiles, status: data.status };
+export function moveTile(
+  data: Board,
+  index: number,
+): { tiles: Board["tiles"]; status: Board["status"]; moves: number } {
+  if (data.status === "complete")
+    return { tiles: data.tiles, status: data.status, moves: data.moves };
 
   const emptyIndex = data.tiles.indexOf(null);
 
   if (!getMovableIndexes(emptyIndex, data.size).includes(index))
-    return { tiles: data.tiles, status: data.status };
+    return { tiles: data.tiles, status: data.status, moves: data.moves };
 
   const newTiles = [...data.tiles];
 
@@ -37,6 +41,7 @@ export function moveTile(data: Board, index: number): { tiles: Board['tiles']; s
 
   const newBoard = { ...data, tiles: newTiles };
   const status = isComplete(newBoard) ? "complete" : "playing";
+  const moves = data.moves + 1;
 
-  return { tiles: newTiles, status };
+  return { tiles: newTiles, status, moves };
 }
