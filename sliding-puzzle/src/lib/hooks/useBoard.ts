@@ -1,34 +1,12 @@
-import { useReducer } from "react";
-import { Action, Board } from "../types/board";
-import { moveTile } from "../utils/game/move";
-import { initBoard } from "../utils/game/init";
+import { useContext } from "react";
+import { BoardContext } from "../context/BoardContext";
 
-function reducer(state: Board, action: Action): Board {
-  switch (action.type) {
-    case "INIT":
-      return {
-        size: action.size,
-        tiles: initBoard(action.size),
-      };
-    case "MOVE":
-      return {
-        ...state,
-        tiles: moveTile(state, action.index),
-      };
-
-    default:
-      return state;
+export function useBoard() {
+  const context = useContext(BoardContext);
+  if (!context) {
+    throw new Error(
+      "cannot use useBoard if component is not within BoardProvider",
+    );
   }
-}
-
-export function useBoard(size: number = 2) {
-  const [state, dispatch] = useReducer(reducer, {
-    size,
-    tiles: initBoard(size),
-  });
-
-  return {
-    state,
-    dispatch,
-  };
+  return context;
 }
