@@ -1,5 +1,5 @@
 import { Board } from "@/lib/types/board";
-import { initBoard, shuffle } from "../init";
+import { generateTiles, initBoard, shuffle } from "../init";
 
 describe("initBoard", () => {
   describe("base structure", () => {
@@ -17,16 +17,27 @@ describe("initBoard", () => {
     });
   });
 
+  describe("generateTiles", () => {
+    it("generates tiles based on a provided number", () => {
+      const numberProvided = 5;
+
+      const result = generateTiles(numberProvided);
+
+      expect(result).toHaveLength(numberProvided * numberProvided);
+    });
+  });
+
   describe("shuffle", () => {
     const board: Board = {
       size: 3,
       tiles: [1, 2, 3, 4, 5, 6, 7, 8, null],
+      status: "playing",
     };
 
     it("makes sures that after shuffling, there is only 1 empty tile", () => {
       const result = shuffle(board.tiles, board.size);
 
-      expect(result.filter(tile => tile === null).length).toBe(1);
+      expect(result.filter((tile) => tile === null).length).toBe(1);
     });
   });
 });

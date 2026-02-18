@@ -2,8 +2,8 @@
 
 import { useBoard } from "@/lib/hooks/useBoard";
 
-export default function Board({ size }: { size?: number }) {
-  const { state, dispatch } = useBoard(size);
+export default function Board() {
+  const { state, dispatch } = useBoard();
 
   const handleClick = (index: number) => {
     dispatch({ type: "MOVE", index: index });

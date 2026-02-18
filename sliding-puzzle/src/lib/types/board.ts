@@ -3,6 +3,7 @@ export type Tile = number | null;
 export interface Board {
   size: number;
   tiles: Tile[];
+  status: "playing" | "complete";
 }
 
 export type Action =

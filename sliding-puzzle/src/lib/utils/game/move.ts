@@ -1,4 +1,5 @@
 import { Board } from "@/lib/types/board";
+import { isComplete } from "./engine";
 
 /**
  * Gets the indexes of the tiles that can be moved
@@ -21,16 +22,21 @@ export function getMovableIndexes(emptyIndex: number, size: number) {
   return moves;
 }
 
-export function moveTile(data: Board, index: number) {
+export function moveTile(data: Board, index: number): { tiles: Board['tiles']; status: Board['status'] } {
+  if (data.status === "complete") return { tiles: data.tiles, status: data.status };
+
   const emptyIndex = data.tiles.indexOf(null);
 
   if (!getMovableIndexes(emptyIndex, data.size).includes(index))
-    return data.tiles;
+    return { tiles: data.tiles, status: data.status };
 
   const newTiles = [...data.tiles];
 
   newTiles[emptyIndex] = data.tiles[index];
   newTiles[index] = null;
 
-  return newTiles;
+  const newBoard = { ...data, tiles: newTiles };
+  const status = isComplete(newBoard) ? "complete" : "playing";
+
+  return { tiles: newTiles, status };
 }
