@@ -3,9 +3,21 @@
 import { useBoard } from "@/lib/hooks/useBoard";
 import Tile from "./Tile";
 import Status from "./Status";
+import { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 export default function Board() {
   const { state } = useBoard();
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <Loading />;
+  }
 
   return (
     <>

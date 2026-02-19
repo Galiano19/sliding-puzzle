@@ -2,7 +2,6 @@ import { InfoIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -13,14 +12,14 @@ export default function About() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">
+        <Button variant="ghost">
           <InfoIcon />
         </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Sliding Puzzle</DialogTitle>
-          <DialogDescription>
+          <DialogContent>
             <div className="space-y-4 text-left">
               Developed by{" "}
               <a
@@ -49,7 +48,7 @@ export default function About() {
                 the last number, with the empty space at the bottom right.
               </span>
             </div>
-          </DialogDescription>
+          </DialogContent>
         </DialogHeader>
       </DialogContent>
     </Dialog>

@@ -7,7 +7,7 @@ import { BoardProvider } from "@/lib/context/BoardContext";
 export default function Home() {
   return (
     <AppLayout pageTitle="Sliding Puzzle">
-      <BoardProvider size={2}>
+      <BoardProvider size={3}>
         <ScoreBoard />
         <div className="flex-1 flex flex-col items-center justify-center px-6">
           <Board />
