@@ -3,9 +3,13 @@
 import { useBoard } from "@/lib/hooks/useBoard";
 import Tile from "./Tile";
 import Status from "./Status";
+import { Loader2 } from "lucide-react";
 
 export default function Board() {
   const { state } = useBoard();
+
+  if (state.status === "initiating")
+    return <Loader2 className="w-10 h-10 animate-spin" />;
 
   return (
     <>

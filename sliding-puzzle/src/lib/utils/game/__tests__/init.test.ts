@@ -1,5 +1,5 @@
 import { Board } from "@/lib/types/board";
-import { generateTiles, initBoard, shuffle } from "../init";
+import { firstInit, generateTiles, init, initBoard, shuffle } from "../init";
 
 describe("initBoard", () => {
   describe("base structure", () => {
@@ -40,6 +40,22 @@ describe("initBoard", () => {
       const result = shuffle(board.tiles, board.size);
 
       expect(result.filter((tile) => tile === null).length).toBe(1);
+    });
+  });
+
+  describe("firstInit", () => {
+    it("returns initial status for Board", () => {
+      const result = firstInit(2);
+
+      expect(result.status).toBe("initiating");
+    });
+  });
+
+  describe("init", () => {
+    it("returns playing status for Board", () => {
+      const result = init(2);
+
+      expect(result.status).toBe("playing");
     });
   });
 });
