@@ -1,28 +1,19 @@
 "use client";
 
 import { useBoard } from "@/lib/hooks/useBoard";
+import Box from "../../ui/box";
 
 export default function ScoreBoard() {
-  const { state, dispatch } = useBoard();
-
-  const handleClickRestart = () => {
-    dispatch({ type: "INIT", size: state.size });
-  };
+  const { state } = useBoard();
 
   return (
-    <div className="flex gap-2 flex-col bg-background10 p-4 rounded-xl w-full">
-      <div className="flex gap-2">
-        <div className="flex flex-col gap 2 p-2">
-          <div className="pb-1 ">Moves</div>
-          <div className="">{state.moves}</div>
+    <div className="flex px-6 gap-4 mb-8">
+      <Box className="flex-1">
+        <div className="text-xs uppercase tracking-widest text-text10 font-bold mb-1">
+          MOVES
         </div>
-        <div className="bg-background20 p-2 rounded-xl">
-          <button onClick={handleClickRestart}>Restart</button>
-        </div>
-      </div>
-      {state.status === "complete" && (
-        <div className="bg-background20 p-2 rounded-xl">Puzzle completed!</div>
-      )}
+        <div className="text-2xl font-bold">{state.moves}</div>
+      </Box>
     </div>
   );
 }

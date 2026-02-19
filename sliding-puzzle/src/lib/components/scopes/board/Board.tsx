@@ -11,7 +11,7 @@ export default function Board() {
 
   return (
     <div
-      className="grid gap-1 bg-background10 p-4 rounded-xl "
+      className="grid gap-1 bg-background10  w-full aspect-square p-3 rounded-2xl shadow-2xl border border-border"
       style={{
         gridTemplateColumns: `repeat(${state.size}, minmax(0, 1fr))`,
 
