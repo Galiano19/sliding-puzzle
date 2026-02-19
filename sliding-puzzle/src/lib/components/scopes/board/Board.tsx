@@ -1,13 +1,10 @@
 "use client";
 
 import { useBoard } from "@/lib/hooks/useBoard";
+import Tile from "./Tile";
 
 export default function Board() {
-  const { state, dispatch } = useBoard();
-
-  const handleClick = (index: number) => {
-    dispatch({ type: "MOVE", index: index });
-  };
+  const { state } = useBoard();
 
   return (
     <div
@@ -19,13 +16,7 @@ export default function Board() {
       }}
     >
       {state.tiles.map((tile, index) => (
-        <button
-          key={index}
-          className="bg-background20 aspect-square flex items-center justify-center border-t border-border text-2xl font-bold rounded-lg shadow-md p-2 md:p-4"
-          onClick={() => handleClick(index)}
-        >
-          {tile}
-        </button>
+        <Tile key={index} value={tile} index={index} />
       ))}
     </div>
   );
