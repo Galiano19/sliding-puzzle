@@ -10,6 +10,7 @@ describe("Engine", () => {
         status: "playing",
         moves: 0,
         movableIndexes: [5, 7],
+        isImage: false,
       };
 
       const result = isComplete(board);
@@ -24,6 +25,7 @@ describe("Engine", () => {
         status: "playing",
         moves: 0,
         movableIndexes: [5, 7],
+        isImage: false,
       };
 
       const result = isComplete(board);

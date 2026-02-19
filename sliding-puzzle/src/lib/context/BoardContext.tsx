@@ -14,7 +14,7 @@ export const BoardContext = createContext<BoardContextType | undefined>(
   undefined,
 );
 
-function reducer(state: Board, action: Action): Board {
+export function reducer(state: Board, action: Action): Board {
   switch (action.type) {
     case "INIT":
       return init(action.size);
@@ -26,6 +26,16 @@ function reducer(state: Board, action: Action): Board {
         status: result.status,
         moves: result.moves,
         movableIndexes: result.movableIndexes,
+      };
+    case "SET_OPTIONS":
+      if (state.size !== action.size) {
+        return init(action.size, action.isImage);
+      }
+
+      return {
+        ...state,
+        size: action.size,
+        isImage: action.isImage,
       };
     default:
       return state;
@@ -46,7 +56,7 @@ export function BoardProvider({
       type: "INIT",
       size: state.size,
     });
-  }, [state.size, dispatch]);
+  }, [dispatch]);
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>
