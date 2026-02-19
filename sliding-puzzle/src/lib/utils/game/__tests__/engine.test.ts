@@ -9,6 +9,7 @@ describe("Engine", () => {
         tiles: [8, 2, 7, 4, 5, 6, 3, 1, null],
         status: "playing",
         moves: 0,
+        movableIndexes: [5, 7],
       };
 
       const result = isComplete(board);
@@ -22,6 +23,7 @@ describe("Engine", () => {
         tiles: [1, 2, 3, 4, 5, 6, 7, 8, null],
         status: "playing",
         moves: 0,
+        movableIndexes: [5, 7],
       };
 
       const result = isComplete(board);

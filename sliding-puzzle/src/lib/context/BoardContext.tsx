@@ -2,7 +2,7 @@
 
 import { createContext, useReducer, ReactNode } from "react";
 import { Action, Board } from "../types/board";
-import { moveTile } from "../utils/game/move";
+import { moveTile, getMovableIndexes } from "../utils/game/move";
 import { initBoard } from "../utils/game/init";
 
 interface BoardContextType {
@@ -15,11 +15,14 @@ export const BoardContext = createContext<BoardContextType | undefined>(
 );
 
 function init(size: number): Board {
+  const tiles = initBoard(size);
+  const emptyIndex = tiles.indexOf(null);
   return {
     size,
-    tiles: initBoard(size),
+    tiles,
     status: "playing",
     moves: 0,
+    movableIndexes: getMovableIndexes(emptyIndex, size),
   };
 }
 
@@ -34,6 +37,7 @@ function reducer(state: Board, action: Action): Board {
         tiles: result.tiles,
         status: result.status,
         moves: result.moves,
+        movableIndexes: result.movableIndexes,
       };
     default:
       return state;

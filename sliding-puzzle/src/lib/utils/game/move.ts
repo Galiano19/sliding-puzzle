@@ -25,14 +25,31 @@ export function getMovableIndexes(emptyIndex: number, size: number) {
 export function moveTile(
   data: Board,
   index: number,
-): { tiles: Board["tiles"]; status: Board["status"]; moves: number } {
+): {
+  tiles: Board["tiles"];
+  status: Board["status"];
+  moves: number;
+  movableIndexes: number[];
+} {
   if (data.status === "complete")
-    return { tiles: data.tiles, status: data.status, moves: data.moves };
+    return {
+      tiles: data.tiles,
+      status: data.status,
+      moves: data.moves,
+      movableIndexes: [],
+    };
 
   const emptyIndex = data.tiles.indexOf(null);
+  const currentMovableIndexes = getMovableIndexes(emptyIndex, data.size);
 
-  if (!getMovableIndexes(emptyIndex, data.size).includes(index))
-    return { tiles: data.tiles, status: data.status, moves: data.moves };
+  //I disabled the tile when is not movable, still I use defense coding here
+  if (!currentMovableIndexes.includes(index))
+    return {
+      tiles: data.tiles,
+      status: data.status,
+      moves: data.moves,
+      movableIndexes: [],
+    };
 
   const newTiles = [...data.tiles];
 
@@ -42,6 +59,8 @@ export function moveTile(
   const newBoard = { ...data, tiles: newTiles };
   const status = isComplete(newBoard) ? "complete" : "playing";
   const moves = data.moves + 1;
+  const newEmptyIndex = index;
+  const movableIndexes = getMovableIndexes(newEmptyIndex, data.size);
 
-  return { tiles: newTiles, status, moves };
+  return { tiles: newTiles, status, moves, movableIndexes };
 }
