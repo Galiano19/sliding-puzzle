@@ -1,6 +1,12 @@
 "use client";
 
-import { createContext, useReducer, ReactNode } from "react";
+import {
+  createContext,
+  useReducer,
+  ReactNode,
+  useState,
+  useEffect,
+} from "react";
 import { Action, Board } from "../types/board";
 import { moveTile, getMovableIndexes } from "../utils/game/move";
 import { initBoard } from "../utils/game/init";
@@ -52,6 +58,13 @@ export function BoardProvider({
   size?: number;
 }) {
   const [state, dispatch] = useReducer(reducer, size, init);
+  const [hydrated, setHydrated] = useState(false);
+
+  useEffect(() => {
+    setHydrated(true);
+  }, [size]);
+
+  if (!hydrated) return null;
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>
