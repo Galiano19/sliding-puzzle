@@ -31,17 +31,23 @@ export default function About() {
               >
                 Carlos Galiano
               </a>
-              <h3 className="font-semibold mb-2">What is it?</h3>
-              <p>
+              <br />
+              <br />
+              <span className="font-semibold mb-2">What is it?</span>
+              <br />
+              <span>
                 A classic sliding puzzle game where you arrange numbered tiles
                 in order by sliding them into the empty space.
-              </p>
-              <h3 className="font-semibold mb-2">How to play</h3>
-              <p>
+              </span>
+              <br />
+              <br />
+              <span className="font-semibold mb-2">How to play</span>
+              <br />
+              <span>
                 Click on any tile adjacent to the empty space to slide it.
                 Continue sliding tiles until all numbers are in order from 1 to
                 the last number, with the empty space at the bottom right.
-              </p>
+              </span>
             </div>
           </DialogDescription>
         </DialogHeader>

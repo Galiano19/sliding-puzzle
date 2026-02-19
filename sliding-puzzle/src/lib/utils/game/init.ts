@@ -2,7 +2,7 @@ import { Tile } from "@/lib/types/board";
 import { getMovableIndexes } from "./move";
 
 /**
- * Shuffles the board by making 200 moves
+ * Shuffles the board by making more than 200 moves
  * It gets the index of the empty tile
  * Then gets the indexes of the tiles that can be moved
  * Then picks one of those indexes randomly
@@ -14,7 +14,7 @@ import { getMovableIndexes } from "./move";
  */
 export function shuffle(tiles: Tile[], size: number) {
   const shuffleTiles = [...tiles];
-  for (let index = 0; index < 200; index++) {
+  for (let index = 0; index < size * size * 200; index++) {
     const emptyIndex = shuffleTiles.indexOf(null);
     const movableItems = getMovableIndexes(emptyIndex, size);
     const randomIndex =

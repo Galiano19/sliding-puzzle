@@ -9,7 +9,7 @@ export default function AppLayout({
   pageTitle: string;
 }) {
   return (
-    <div className="relative flex h-screen w-full max-w-[480px] mx-auto flex-col overflow-hidden shadow-2xl">
+    <div className="relative flex h-screen w-full lg:max-w-[780px] md:max-w-[480px] mx-auto flex-col overflow-hidden shadow-2xl">
       <Header>
         <h1 className="text-2xl font-bold">{pageTitle}</h1>
         <About />
