@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "../../ui/dialog";
 import Box from "../../ui/box";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useBoard } from "@/lib/hooks/useBoard";
 import { Button } from "../../ui/button";
 import { Checkbox } from "../../ui/checkbox";
@@ -20,13 +20,6 @@ export default function GridSelector() {
   const [open, setOpen] = useState(false);
   const [useImage, setUseImage] = useState<boolean>(state.isImage);
   const [selectedSize, setSelectedSize] = useState(state.size);
-
-  useEffect(() => {
-    if (!open) return;
-
-    setUseImage(state.isImage);
-    setSelectedSize(state.size);
-  }, [open]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
