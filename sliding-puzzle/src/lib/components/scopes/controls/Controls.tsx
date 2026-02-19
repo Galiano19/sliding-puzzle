@@ -1,8 +1,8 @@
 "use client";
 
 import { useBoard } from "@/lib/hooks/useBoard";
-import Button from "../../ui/button";
 import { RotateCcw } from "lucide-react";
+import { Button } from "../../ui/button";
 
 export default function Controls() {
   const { state, dispatch } = useBoard();
