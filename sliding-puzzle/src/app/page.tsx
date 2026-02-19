@@ -1,7 +1,7 @@
 import AppLayout from "@/lib/components/layout/AppLayout";
 import Board from "@/lib/components/scopes/board/Board";
 import Controls from "@/lib/components/scopes/controls/Controls";
-import ScoreBoard from "@/lib/components/scopes/score/Score";
+import ScoreBoard from "@/lib/components/scopes/score/ScoreBoard";
 import { BoardProvider } from "@/lib/context/BoardContext";
 
 export default function Home() {
