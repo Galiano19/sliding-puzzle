@@ -4,21 +4,39 @@ import { Grid } from "lucide-react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "../../ui/dialog";
 import Box from "../../ui/box";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useBoard } from "@/lib/hooks/useBoard";
 import { Button } from "../../ui/button";
+import { Checkbox } from "../../ui/checkbox";
 
 export default function GridSelector() {
   const { state, dispatch } = useBoard();
   const [open, setOpen] = useState(false);
+  const [useImage, setUseImage] = useState<boolean>(state.isImage);
+  const [selectedSize, setSelectedSize] = useState(state.size);
 
-  const handleSetSize = (size: number) => {
-    dispatch({ type: "INIT", size });
+  useEffect(() => {
+    if (!open) return;
+
+    setUseImage(state.isImage);
+    setSelectedSize(state.size);
+  }, [open]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    dispatch({
+      type: "SET_OPTIONS",
+      size: selectedSize,
+      isImage: useImage,
+    });
+
     setOpen(false);
   };
 
@@ -39,20 +57,44 @@ export default function GridSelector() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Grid Selection</DialogTitle>
+          <DialogDescription>Form to select Grid options</DialogDescription>
           <DialogContent>
-            <div className="flex flex-col flex-wrap gap-4 mt-4">
+            <form
+              onSubmit={handleSubmit}
+              className="flex flex-col flex-wrap gap-4 mt-8"
+            >
               {[2, 3, 4, 5].map((size) => (
                 <Button
                   key={size}
-                  onClick={
-                    state.size !== size ? () => handleSetSize(size) : undefined
-                  }
-                  disabled={state.size === size}
+                  type="button"
+                  variant={selectedSize === size ? "default" : "outline"}
+                  onClick={() => setSelectedSize(size)}
                 >
                   {size} x {size}
                 </Button>
               ))}
-            </div>
+              <div className="flex gap-2 items-center">
+                <Checkbox
+                  id="setImage"
+                  onClick={() => setUseImage(!useImage)}
+                  checked={useImage}
+                />
+                <label htmlFor="setImage">
+                  {" "}
+                  Use an image instead (it is a Highland Cattle, really cute!)
+                </label>
+              </div>
+              <div className="flex gap-2 justify-end">
+                <Button type="submit">Apply</Button>
+                <Button
+                  variant="outline"
+                  type="button"
+                  onClick={() => setOpen(false)}
+                >
+                  Cancel
+                </Button>
+              </div>
+            </form>
           </DialogContent>
         </DialogHeader>
       </DialogContent>

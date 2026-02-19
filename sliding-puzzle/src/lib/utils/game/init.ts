@@ -47,10 +47,11 @@ export function firstInit(size: number): Board {
     status: "initiating",
     moves: 0,
     movableIndexes: [],
+    isImage: false,
   };
 }
 
-export function init(size: number): Board {
+export function init(size: number, isImage?: boolean): Board {
   const tiles = initBoard(size);
   const emptyIndex = tiles.indexOf(null);
   return {
@@ -59,5 +60,6 @@ export function init(size: number): Board {
     status: "playing",
     moves: 0,
     movableIndexes: getMovableIndexes(emptyIndex, size),
+    isImage: isImage ?? false,
   };
 }

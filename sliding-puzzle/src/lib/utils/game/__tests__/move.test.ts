@@ -8,6 +8,7 @@ describe("moveTile", () => {
     status: "playing",
     moves: 0,
     movableIndexes: [5, 7],
+    isImage: false,
   };
 
   describe("move strategy", () => {

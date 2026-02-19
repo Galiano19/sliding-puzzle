@@ -34,6 +34,7 @@ describe("initBoard", () => {
       status: "playing",
       moves: 0,
       movableIndexes: [5, 7],
+      isImage: false,
     };
 
     it("makes sures that after shuffling, there is only 1 empty tile", () => {

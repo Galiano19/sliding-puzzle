@@ -6,6 +6,7 @@ export interface Board {
   status: "initiating" | "playing" | "complete";
   moves: number;
   movableIndexes: number[];
+  isImage: boolean;
 }
 
 export type Action =
@@ -16,4 +17,9 @@ export type Action =
   | {
       type: "MOVE";
       index: number;
+    }
+  | {
+      type: "SET_OPTIONS";
+      isImage: boolean;
+      size: number;
     };
