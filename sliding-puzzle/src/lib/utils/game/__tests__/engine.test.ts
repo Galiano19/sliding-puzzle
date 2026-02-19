@@ -13,7 +13,7 @@ describe("Engine", () => {
         isImage: false,
       };
 
-      const result = isComplete(board);
+      const result = isComplete(board.tiles, board.size);
 
       expect(result).toBeFalsy;
     });
@@ -28,7 +28,7 @@ describe("Engine", () => {
         isImage: false,
       };
 
-      const result = isComplete(board);
+      const result = isComplete(board.tiles, board.size);
 
       expect(result).toBeTruthy;
     });

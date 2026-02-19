@@ -37,6 +37,8 @@ export function reducer(state: Board, action: Action): Board {
         size: action.size,
         isImage: action.isImage,
       };
+    case "RESET":
+      return init(action.size, action.isImage);
     default:
       return state;
   }

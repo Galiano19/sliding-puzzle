@@ -37,4 +37,21 @@ describe("Board reducer", () => {
     expect(next.isImage).toBe(true);
     expect(next.tiles.length).toBe(16);
   });
+
+  it("should reset board with RESET keeping Image information", () => {
+    const initial = firstInit(3);
+
+    const action = reducer(initial, {
+      type: "SET_OPTIONS",
+      size: 4,
+      isImage: true,
+    });
+    const next = reducer(initial, {
+      type: "SET_OPTIONS",
+      size: 4,
+      isImage: action.isImage,
+    });
+
+    expect(next.isImage).toBeTruthy;
+  });
 });

@@ -1,5 +1,6 @@
 import { Board, Tile } from "@/lib/types/board";
 import { getMovableIndexes } from "./move";
+import { isComplete } from "./engine";
 
 /**
  * Shuffles the board by making more than 200 moves
@@ -23,6 +24,8 @@ export function shuffle(tiles: Tile[], size: number) {
     shuffleTiles[emptyIndex] = shuffleTiles[randomIndex];
     shuffleTiles[randomIndex] = null;
   }
+
+  if (isComplete(shuffleTiles, size)) return shuffle(tiles, size);
 
   return shuffleTiles;
 }

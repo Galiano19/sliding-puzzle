@@ -57,7 +57,9 @@ export function moveTile(
   newTiles[index] = null;
 
   const newBoard = { ...data, tiles: newTiles };
-  const status = isComplete(newBoard) ? "complete" : "playing";
+  const status = isComplete(newBoard.tiles, newBoard.size)
+    ? "complete"
+    : "playing";
   const moves = data.moves + 1;
   const newEmptyIndex = index;
   const movableIndexes = getMovableIndexes(newEmptyIndex, data.size);

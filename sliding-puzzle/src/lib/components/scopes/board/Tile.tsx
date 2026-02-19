@@ -35,7 +35,7 @@ export default function Tile({
   }
   return (
     <button
-      className={`bg-background20  flex items-center justify-center text-2xl font-bold p-4 md:p-6 lg:p-8 ${baseStyles} ${
+      className={`bg-background20  flex items-center justify-center md:text-2xl font-bold p-4 md:p-6 lg:p-8 ${state.size > 4 ? "text-md" : "text-2xl"} ${baseStyles} ${
         isMovable ? movableItem : ""
       }`}
       onClick={isMovable ? () => handleClick(index) : undefined}

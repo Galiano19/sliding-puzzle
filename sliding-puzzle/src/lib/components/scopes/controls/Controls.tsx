@@ -7,7 +7,8 @@ import { Button } from "../../ui/button";
 export default function Controls() {
   const { state, dispatch } = useBoard();
 
-  const handleReset = () => dispatch({ type: "INIT", size: state.size });
+  const handleReset = () =>
+    dispatch({ type: "RESET", size: state.size, isImage: state.isImage });
   return (
     <div className="p-6 pb-12 flex gap-4">
       <Button onClick={handleReset}>

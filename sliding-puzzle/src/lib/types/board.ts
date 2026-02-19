@@ -19,6 +19,11 @@ export type Action =
       index: number;
     }
   | {
+      type: "RESET";
+      isImage: boolean;
+      size: number;
+    }
+  | {
       type: "SET_OPTIONS";
       isImage: boolean;
       size: number;
