@@ -1,9 +1,9 @@
 "use client";
 
-import { createContext, useReducer, ReactNode } from "react";
+import { createContext, useReducer, ReactNode, useEffect } from "react";
 import { Action, Board } from "../types/board";
-import { moveTile, getMovableIndexes } from "../utils/game/move";
-import { initBoard } from "../utils/game/init";
+import { moveTile } from "../utils/game/move";
+import { firstInit, init } from "../utils/game/init";
 
 interface BoardContextType {
   state: Board;
@@ -13,18 +13,6 @@ interface BoardContextType {
 export const BoardContext = createContext<BoardContextType | undefined>(
   undefined,
 );
-
-function init(size: number): Board {
-  const tiles = initBoard(size);
-  const emptyIndex = tiles.indexOf(null);
-  return {
-    size,
-    tiles,
-    status: "playing",
-    moves: 0,
-    movableIndexes: getMovableIndexes(emptyIndex, size),
-  };
-}
 
 function reducer(state: Board, action: Action): Board {
   switch (action.type) {
@@ -51,7 +39,14 @@ export function BoardProvider({
   children: ReactNode;
   size?: number;
 }) {
-  const [state, dispatch] = useReducer(reducer, size, init);
+  const [state, dispatch] = useReducer(reducer, size, firstInit);
+
+  useEffect(() => {
+    dispatch({
+      type: "INIT",
+      size: state.size,
+    });
+  }, [state.size, dispatch]);
 
   return (
     <BoardContext.Provider value={{ state, dispatch }}>

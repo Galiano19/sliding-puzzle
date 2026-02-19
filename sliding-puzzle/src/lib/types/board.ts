@@ -3,7 +3,7 @@ export type Tile = number | null;
 export interface Board {
   size: number;
   tiles: Tile[];
-  status: "playing" | "complete";
+  status: "initiating" | "playing" | "complete";
   moves: number;
   movableIndexes: number[];
 }

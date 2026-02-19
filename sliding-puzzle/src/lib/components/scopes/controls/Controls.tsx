@@ -12,7 +12,7 @@ export default function Controls() {
     <div className="p-6 pb-12 flex gap-4">
       <Button onClick={handleReset}>
         <RotateCcw />
-        Reset
+        <span className="uppercase text-md font-bold">Reset</span>
       </Button>
     </div>
   );

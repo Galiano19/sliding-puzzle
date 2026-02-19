@@ -1,4 +1,4 @@
-import { Tile } from "@/lib/types/board";
+import { Board, Tile } from "@/lib/types/board";
 import { getMovableIndexes } from "./move";
 
 /**
@@ -38,4 +38,26 @@ export function initBoard(size: number = 2): Tile[] {
 
   const tiles = generateTiles(size);
   return shuffle(tiles, size);
+}
+
+export function firstInit(size: number): Board {
+  return {
+    size,
+    tiles: [],
+    status: "initiating",
+    moves: 0,
+    movableIndexes: [],
+  };
+}
+
+export function init(size: number): Board {
+  const tiles = initBoard(size);
+  const emptyIndex = tiles.indexOf(null);
+  return {
+    size,
+    tiles,
+    status: "playing",
+    moves: 0,
+    movableIndexes: getMovableIndexes(emptyIndex, size),
+  };
 }

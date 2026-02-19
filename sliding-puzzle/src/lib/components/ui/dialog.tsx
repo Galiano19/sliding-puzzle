@@ -69,10 +69,10 @@ function DialogContent({
         {children}
         {showCloseButton && (
           <DialogPrimitive.Close data-slot="dialog-close" asChild>
-            <button className="absolute top-2 right-2">
+            <Button variant="ghost" className="absolute top-2 right-2">
               <XIcon />
               <span className="sr-only">Close</span>
-            </button>
+            </Button>
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Content>
